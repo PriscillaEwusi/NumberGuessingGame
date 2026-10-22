@@ -11,7 +11,7 @@ DIFFICULTIES = {
     "3": {"name": "Hard",   "max_number": 100, "attempts": 7},
 }
 
- stats = {
+stats = {
     "games_played": 0,
     "games_won": 0,
     "best_score": None,  # fewest attempts used in a win (None = no win yet)
@@ -34,7 +34,7 @@ def get_valid_number(prompt, minimum, maximum):
  
         return number  # input is valid, so give it back to the caller
     
- def show_menu():
+def show_menu():
     """Print the main menu options."""
     print("\n===== NUMBER GUESSING GAME =====")
     print("1. Play game")
@@ -42,7 +42,7 @@ def get_valid_number(prompt, minimum, maximum):
     print("3. How to play")
     print("4. Exit")
 
- def choose_difficulty():
+def choose_difficulty():
     """Ask the player to pick a difficulty and return its settings."""
     print("\nChoose a difficulty:")
     for key, level in DIFFICULTIES.items():
@@ -88,7 +88,7 @@ def play_game():
  
     update_stats(won, attempts_used)
 
- # STEP 3: Update the stats after each game
+# STEP 3: Update the stats after each game
 def update_stats(won, attempts_used):
     """Record the result of a finished game."""
     stats["games_played"] += 1
@@ -118,3 +118,24 @@ def show_instructions():
     print("3. Guess the number. I'll tell you if you're too high or too low.")
     print("4. Win by guessing it before you run out of attempts!")
  
+def main():
+    """Run the main menu loop."""
+    print("Welcome to the Number Guessing Game!")
+ 
+    while True:  # runs forever until we hit 'break'
+        show_menu()
+        choice = get_valid_number("Choose an option (1-4): ", 1, 4)
+ 
+        if choice == 1:
+            play_game()
+        elif choice == 2:
+            view_stats()
+        elif choice == 3:
+            show_instructions()
+        elif choice == 4:
+            print("Thanks for playing. Goodbye!")
+            break  # leave the loop, which ends the program
+ 
+ 
+if __name__ == "__main__":
+    main()
